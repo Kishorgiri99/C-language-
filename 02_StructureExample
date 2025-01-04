@@ -1,0 +1,98 @@
+/*Array of Structures:
+Create a structure Book with members:
+
+title (string)
+author (string)
+price (float)
+Write a program to:
+
+1.Accept details of n books.
+2.Sort the books in ascending order based on price.
+3.Display the sorted list. */
+
+#include<stdio.h>
+#include <inttypes.h>
+#include<stdlib.h>
+#include"string.h"
+
+#define MAX_BOOK 3//100
+// void printBookDetails(Book_s Book[MAX_BOOK]);
+// void sortAccendingPrice(Book_s Book[MAX_BOOK]);
+// void setBookInfo(Book_s Book[MAX_BOOK]);
+
+typedef struct Book_t
+{
+    char BOOK_Title[20];
+    char BOOK_Auther[20];
+    float BOOk_Price;
+    
+}Book_s;
+
+Book_s Book[MAX_BOOK];
+
+
+void setBookInfo(Book_s Book[MAX_BOOK])
+{
+
+    printf("Enter The Details of BOOK:\n\r");
+    for(uint8_t bookIndex = 0; bookIndex < MAX_BOOK ; bookIndex ++ )
+    {
+        printf("Enter Title of Book : %d\n\r",bookIndex + 1);
+        fgets(Book[bookIndex].BOOK_Title, sizeof(Book[bookIndex].BOOK_Title), stdin); 
+        Book[bookIndex].BOOK_Title[strcspn(Book[bookIndex].BOOK_Title, "\n")] = 0;
+
+        printf("Enter Auther Name of Book: %d\n\r",bookIndex + 1);
+        fgets(Book[bookIndex].BOOK_Auther,sizeof(Book[bookIndex].BOOK_Auther),stdin);
+        Book[bookIndex].BOOK_Auther[strcspn(Book[bookIndex].BOOK_Auther,"\n")] = 0;
+
+        printf("Enter Price of Book : %d\n\r",bookIndex + 1);
+        scanf("%f",&Book[bookIndex].BOOk_Price);
+
+        while(getchar() != '\n'); 
+        
+    }
+}
+void printBookDetails(Book_s Book[MAX_BOOK])
+{
+    for(uint8_t bookIndex = 0; bookIndex < MAX_BOOK ; bookIndex ++ )
+    {
+        printf("INFO OF BOOK NUMBER : %d\n\r",bookIndex + 1);
+        printf("TITLE  :%s\n\r",Book[bookIndex].BOOK_Title);
+        printf("AUTHER :%s\n\r",Book[bookIndex].BOOK_Auther);
+        printf("PRICE  :%2f\n\r",Book[bookIndex].BOOk_Price);
+
+
+    }
+
+
+}
+void sortAccendingPrice(Book_s Book[MAX_BOOK])
+{   
+    for (size_t i = 0; i < MAX_BOOK - 1; i++)
+    {
+        for (size_t j = 0; j < MAX_BOOK - i -1; j++)
+        {
+            if(Book[j].BOOk_Price > Book[j +1].BOOk_Price)
+            {
+                Book_s  temp  = Book[j+1];
+                Book[j+1]     = Book[j];
+                Book[j]       = temp;
+
+            }
+        }
+        
+    }
+    
+    printBookDetails(Book);
+
+
+
+}
+
+int main()
+{
+    setBookInfo(&Book[MAX_BOOK]);
+    printBookDetails(&Book[MAX_BOOK]);
+    sortAccendingPrice(&Book[MAX_BOOK]);
+    return 0;
+}
