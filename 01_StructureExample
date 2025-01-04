@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include <inttypes.h>
+#include<stdlib.h>
+#include"string.h"
+
+void ShowEmpInfo(Employee_s EMP);
+
+typedef struct  Employee_t
+{
+    uint32_t EmpID;
+    char     EmpName[50];
+    float    EmpSal;
+   
+}Employee_s;
+
+
+void ShowEmpInfo(Employee_s EMP)
+{
+    printf("EMPLOYEE DETAILS :\n\r ID:%d\n\rNAME:%s\n\rSAL:%.2f",
+    EMP.EmpID ,EMP.EmpName,EMP.EmpSal);
+}
+
+Employee_s Emp1;
+int main()
+{
+    Emp1.EmpID = 100;
+    Emp1.EmpSal = 25000.00;
+    strcpy(Emp1.EmpName,"Kishor");    
+    ShowEmpInfo(Emp1);
+
+
+    return 0;
+}
