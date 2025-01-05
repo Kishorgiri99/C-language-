@@ -1,0 +1,51 @@
+/*Structure with Pointers:
+Write a program to define a structure Student with members:
+roll_no (integer)
+marks (float)
+Use pointers to dynamically allocate memory for storing details of 3 students.
+Display their information.*/
+
+#include<stdio.h>
+#include <inttypes.h>
+#include<stdlib.h>
+#include"string.h"
+
+#define MAX_STUDENTS 5//20
+
+typedef struct students_t
+{
+ uint16_t RollNum;
+ float    marks; 
+}students_s;
+
+
+int main()
+{
+    students_s  *students;
+    students = (students_s *)malloc(MAX_STUDENTS * sizeof(students_s));
+
+    if(students == NULL)
+    {
+        printf("Memory allocation Failed.\n\r");
+        return 0;
+    }
+    printf("Enter the Details of students: \n\r");
+    for(uint16_t index = 0 ; index < MAX_STUDENTS ; index ++)
+    {
+        printf("\nEnter Ther RollNum of Student : %d ",index + 1);
+        scanf("%d",&students[index].RollNum);
+        printf("\nEnter The marks of students : %d ",index + 1);
+        scanf("%f",&students[index].marks);
+    }
+    printf("\nStudents Detalis: ");
+    for(uint8_t index = 0; index < MAX_STUDENTS ; index ++)
+    {
+        printf("\nROLL NUM:%d and Marks : %2f " , students[index].RollNum,students[index].marks);
+    }
+    free(students);
+
+    
+
+
+    return 0;
+}
