@@ -1,0 +1,48 @@
+/*
+Structure with Union:
+Define a union Data with members:
+int i
+float f
+char str[20]
+
+Create a structure Container that contains:
+An integer ID
+A union Data
+Write a program to demonstrate accessing different members of the union in the structure and explain memory allocation.
+*/
+
+#include<stdio.h>
+#include<inttypes.h>
+#include<string.h>
+
+typedef union members_t
+{
+  int i;
+  float f;
+  char str[20];
+}members_u;
+
+typedef struct StuctMemeber_t
+{
+    int ID;
+    members_u Data;
+}StuctMemeber_s;
+
+int main()
+{
+    StuctMemeber_s StuctMemeber;
+    
+    StuctMemeber.ID = 10;
+    printf("StuctMemeber.ID :%d\n",StuctMemeber.ID);
+    StuctMemeber.Data.i = 100;
+    printf("StuctMemeber.Data.i : %d\n",StuctMemeber.Data.i );
+    StuctMemeber.Data.f = 12.23;
+    printf("StuctMemeber.Data.f : %.2f\n",StuctMemeber.Data.f );
+    strcpy(StuctMemeber.Data.str,"StuctMemeber.Data.str");
+    printf("StuctMemeber.Data.str : %s\n",StuctMemeber.Data.str);
+
+    printf("After Data Overwriting on union member: \n");
+    printf("StuctMemeber.Data.i : %d\n",StuctMemeber.Data.i );
+    printf("StuctMemeber.Data.f : %.2f\n",StuctMemeber.Data.f );
+    printf("StuctMemeber.Data.str : %s\n",StuctMemeber.Data.str);
+}
