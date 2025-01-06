@@ -1,0 +1,52 @@
+/*
+Passing Structure to Functions:
+Define a structure Rectangle with members:
+
+length
+width
+Write functions to:
+
+Calculate the area of a rectangle.
+Calculate the perimeter of a rectangle.
+Pass the structure as a parameter to these functions.
+*/
+
+#include<stdio.h>
+#include<inttypes.h>
+#include<string.h>
+
+typedef struct RectPara_t
+{
+    float length;
+    float width;
+}RectPara_s;
+void takeRectPara(RectPara_s *Rect)
+{
+    printf("Enter The Parameter of Structure :\n\r");
+    printf("Enter The Length: \n\r");
+    scanf("%f",&Rect->length);
+    printf("Enter The Width: \n\r");
+    scanf("%f",&Rect->width);
+}
+void calculateAreaOfReact(RectPara_s Rect)
+{
+    float area = Rect.length * Rect.width;
+    printf("The Area of rectangle is: %.2f\n\r",area);
+}
+void calculatePerimeterOfReact(RectPara_s Rect)
+{
+    float Perimetere = (Rect.length + Rect.width) * 2;
+    printf("The Perimetere of rectangle is: %.2f\n\r",Perimetere);
+}
+int main()
+{
+    RectPara_s RectPara_1 , RectPara_2;
+    takeRectPara(&RectPara_1);
+    calculateAreaOfReact(RectPara_1);
+    calculatePerimeterOfReact(RectPara_1);
+
+    takeRectPara(&RectPara_2);
+    calculateAreaOfReact(RectPara_2);
+    calculatePerimeterOfReact(RectPara_2);    
+    return 0;  
+}
