@@ -1,0 +1,80 @@
+/*
+Write a C program to create a calculator using function pointers. 
+Implement operations like addition, subtraction, multiplication, and division.
+
+
+*/
+
+#include <stdio.h>
+#include<inttypes.h>
+#include<string.h>
+
+
+
+// Function definitions
+float Addition(float N1, float N2)
+{
+    return N1 + N2;
+}
+
+float Subtraction(float N1, float N2)
+{
+    return N1 - N2;
+}
+
+float Multiplication(float N1, float N2)
+{
+    return N1 * N2;
+}
+float Division(float N1, float N2)
+{
+    return N1 / N2;
+}
+// Structure definition
+typedef struct calc_para_t
+{
+    float operand_1;
+    float operand_2;
+    char operationSign;
+    float (*Do_Operation)(float,float);
+} calc_para_s;
+
+
+int main()
+{
+    calc_para_s calc_para;
+
+    printf("THIS IS CALCULATOR\n");
+    printf("Enter Operation to perform: [+,-,*,/]\n");
+    scanf(" %c", &calc_para.operationSign); // Fixed whitespace issue
+    printf("Enter Operand 1st: \n");
+    scanf("%f", &calc_para.operand_1);
+    printf("Enter Operand 2nd: \n");
+    scanf("%f", &calc_para.operand_2);
+
+    // Assign the function pointer based on operation
+    switch (calc_para.operationSign)
+    {
+    case '+':
+        calc_para.Do_Operation = Addition;
+        break;
+    case '-':
+        calc_para.Do_Operation = Subtraction;
+        break;
+    case '*':
+        calc_para.Do_Operation = Multiplication;
+        break;
+    case '/':
+        calc_para.Do_Operation = Division;
+        break;
+    default:
+        printf("Invalid Operation\n");
+        return 1; // Exit with error
+    }
+
+    // Perform the operation
+    float result = calc_para.Do_Operation(calc_para.operand_1, calc_para.operand_2);
+    printf("Result: %.2f\n", result);
+
+    return 0;
+}
