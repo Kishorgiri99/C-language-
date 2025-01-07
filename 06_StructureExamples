@@ -1,0 +1,35 @@
+/*
+Structure with Bit-Fields:
+Create a structure with bit-fields to store:
+
+A flag (1-bit)
+An error code (3-bits)
+A status code (4-bits)
+Write a program to set and access these bit-fields and explain how memory is saved.
+*/
+
+
+#include<stdio.h>
+#include<inttypes.h>
+/*
+uint8_t -> 8 bits -> 1 byte
+
+*/
+typedef struct BitFields_t
+{
+    uint8_t Flag      : 1; // 1 bit  -> here we can store 0 or 1
+    uint8_t ErrorCode : 3; // 3 bits -> here we can store 0 - 7
+    uint8_t Status    : 4; // 4 bits -> here we can store 0 - 15
+}BitFields_s;
+
+int main()
+{
+    BitFields_s BitFields;
+
+    BitFields.Flag      = 1;
+    BitFields.ErrorCode = 2;
+    BitFields.Status    = 5;
+    printf("Flag:%d\tErrorCode:%d\tStatus:%d\n",BitFields.Flag,BitFields.ErrorCode,BitFields.Status);
+
+    return 0;
+}
