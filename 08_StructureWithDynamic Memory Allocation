@@ -1,0 +1,69 @@
+/*
+Dynamic Memory Allocation
+Write a program to dynamically allocate memory for an array of integers, take input,
+and find the largest and smallest numbers.
+*/
+
+#include <stdio.h>
+#include<inttypes.h>
+#include<string.h>
+
+#define n 10
+
+typedef struct  MyStruct_t
+{
+   int arrlen;
+   int *ptr;
+   int maxNum;
+   int minNum;
+}MyStruct_s;
+
+
+int main()
+{
+    MyStruct_s MyStruct;
+    printf("Enter Array length :\n");
+    scanf("%d",&MyStruct.arrlen);
+    MyStruct.ptr = ( int )malloc(sizeof(MyStruct.arrlen) * n);
+
+    if(MyStruct.ptr == NULL)
+    {
+        printf("Memory Allocation failed.\n");
+        return 0;
+    }
+
+    for(uint8_t index = 0; index < MyStruct.arrlen;index++)
+    {
+        printf("Enter %d Element of array.\n",index + 1);
+        scanf("%d",&MyStruct.ptr[index]);
+    }
+    for(uint8_t index = 0; index < MyStruct.arrlen;index++)
+    {
+        printf("Entered %d Element of array : %d\n",index + 1,(MyStruct.ptr[index]));
+        
+    }
+    // Initialize max and min with the first element
+    MyStruct.maxNum = MyStruct.ptr[0];
+    MyStruct.minNum = MyStruct.ptr[0];
+
+    // Find maximum and minimum values
+    for (uint8_t index = 1; index < MyStruct.arrlen; index++)
+    {
+        if (MyStruct.ptr[index] > MyStruct.maxNum)
+        {
+            MyStruct.maxNum = MyStruct.ptr[index];
+        }
+        if (MyStruct.ptr[index] < MyStruct.minNum)
+        {
+            MyStruct.minNum = MyStruct.ptr[index];
+        }
+    } 
+    // Print the results
+    printf("Minimum value: %d\n", MyStruct.minNum);
+    printf("\nMaximum value: %d\n", MyStruct.maxNum);
+    
+    // Free allocated memory
+    free(MyStruct.ptr);
+
+    return 0;
+}
