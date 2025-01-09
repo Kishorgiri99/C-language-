@@ -1,0 +1,39 @@
+/*
+Input and Output:
+
+Write a program to input a string and
+print it in reverse order without using built-in functions.
+*/
+#include <stdio.h>
+#include <inttypes.h>
+
+int main()
+{
+    char string[100];  // Original string
+    char reverse[100]; // Reversed string
+    
+    // Input the string
+    printf("Enter String:\n");
+    fgets(string, sizeof(string), stdin);
+
+    // Remove the newline character from fgets()
+    uint16_t len = 0;
+    while (string[len] != '\n' && string[len] != '\0') 
+    {
+        len++;
+    }
+    string[len] = '\0'; // Replace '\n' with '\0'
+
+    // Reverse the string manually
+    for (uint16_t i = 0; i < len; i++)
+    {
+        reverse[i] = string[len - i - 1];
+    }
+    reverse[len] = '\0'; // Add null terminator
+
+    // Output the reversed string
+    printf("Original String: %s\n", string);
+    printf("Reversed String: %s\n", reverse);
+
+    return 0;
+}
