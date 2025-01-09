@@ -1,0 +1,31 @@
+/*
+Copy String:
+
+Write a program to copy one string into another without using strcpy().
+*/
+
+#include<stdio.h>
+#include<string.h>
+#include<inttypes.h>
+
+int main()
+{
+    char name[50];
+    char cpName[50];
+    uint8_t len = 0;
+
+    printf("Enter a name:\n");
+    // gets(name);
+    fgets(name,sizeof(name),stdin);
+    printf("You entered:%s\n",name);
+    
+    for(uint8_t i = 0; name[i];i++,len++)
+    {
+        cpName[i] = name[i];
+
+    }
+    cpName[len]='\0';
+    printf("Copy String :%s\n",cpName);
+
+
+}
