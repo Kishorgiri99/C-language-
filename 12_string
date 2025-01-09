@@ -1,0 +1,35 @@
+/*
+Count Characters.
+Write a program to count the number of vowels, consonants, digits, and spaces in a string
+*/
+
+#include<stdio.h>
+#include<string.h>
+#include<inttypes.h>
+#include <ctype.h> 
+int main()
+{   
+    char str[50];
+    uint8_t vowels=0,consonants=0,digits=0,spaces=0,etc=0;
+    printf("Enetr a string:\n");
+    // gets(str);
+    fgets(str,sizeof(str),stdin);
+    str[strcspn(str,"\n")] = '\0';
+    
+    printf("You Entered string is:%s\n",str);
+
+    for(uint8_t i=0; str[i];i++)
+    {
+        if( (str[i] =='a'||str[i] =='e'||str[i] =='i'||str[i] =='o'||str[i] =='u')) vowels++;
+        else if(isdigit(str[i]))digits++;
+        else if(isspace(str[i]))spaces++;
+        else if(isalpha(str[i]))consonants++;
+        else etc++; 
+    }
+
+    printf("Vowels: %d\n", vowels);
+    printf("Consonants: %d\n", consonants);
+    printf("Digits: %d\n", digits);
+    printf("Spaces: %d\n", spaces);
+    return 0;
+}
