@@ -1,0 +1,26 @@
+/*
+Length of String:
+Write a function to calculate the length of a string without using strlen().
+*/
+
+#include <stdio.h>
+#include <inttypes.h>
+#include<string.h>
+int main()
+{
+    char name[50];
+    uint8_t len = 0;
+
+    printf("Enter a string:\n");
+    gets(name);
+    printf("Entered String is :%s\n",name);
+
+    for(uint8_t i = 0 ; name[i];i++)
+    {
+        len++;
+
+    }
+    printf("len:%d\n",len);
+
+    return 0;
+}
